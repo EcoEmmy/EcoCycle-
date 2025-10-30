@@ -444,60 +444,6 @@ def redeem_reward():
     
     return jsonify({'success': True, 'message': 'Reward redeemed successfully!'})
 
-#Remove after launch
-@app.route("/create-admin")
-def create_admin():
-    from werkzeug.security import generate_password_hash
-    import psycopg
-
-    DB_NAME = "ecocycle_pawd"
-    DB_USER = "ecocycle_pawd_user"
-    DB_PASSWORD = "F6V5wGoyfqjOWOs59MWxZTJdYyN8q6va"
-    DB_HOST = "dpg-d41h0logjchc739sn8lg-a.oregon-postgres.render.com"
-    DB_PORT = "5432"
-
-    username = "admin"
-    password = "ecoAdmin"
-    full_name = "System Administrator"
-    email = "support@ecocycle.com"
-
-    try:
-        conn = psycopg.connect(
-            dbname=DB_NAME,
-            user=DB_USER,
-            password=DB_PASSWORD,
-            host=DB_HOST,
-            port=DB_PORT,
-            sslmode="require"
-        )
-
-        password_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=16)
-
-        with conn.cursor() as cur:
-            cur.execute(
-                "INSERT INTO admins (username, password_hash, full_name, email) VALUES (%s, %s, %s, %s)",
-                (username, password_hash, full_name, email)
-            )
-            conn.commit()
-
-        return "✅ Admin created successfully!"
-
-    except Exception as e:
-        return f"❌ Error: {e}"
-
-    finally:
-        if 'conn' in locals():
-            conn.close()
-
-
-
-
-
-
-
-
-
-
 @app.route('/rewards-dashboard')
 def rewards_dashboard():
     """Rewards dashboard with leaderboard and user stats"""
