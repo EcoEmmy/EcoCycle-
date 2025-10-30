@@ -151,7 +151,9 @@
                 <td>{{ student.residence }}</td>
                 <td>{{ student.points }}</td>
                 <td>{{ student.total_points_earned }}</td>
-                <td>{{ student.created_at[:10] }}</td>
+                <td>{{ student.created_at.strftime('%Y-%m-%d') }}
+
+</td>
                 <td>
                     {% if student.is_active == 1 %}
                     <span class="status-active">Active</span>
