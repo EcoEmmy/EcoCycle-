@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}User Registration{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">Welcome to Ecocycle</h1>
+            <p class="hero-subtitle">Join the movement to turn waste into wealth</p>
+        </div>
+    </div>
+</div>
+
+<div class="registration-section">
+    <div class="container">
+        <div class="registration-card slide-up">
+            <h2>Student Registration</h2>
+            <p class="card-subtitle">Start your eco-journey today</p>
+            
+            <form id="registrationForm" class="registration-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Choose a username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Create a password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="faculty">Faculty</label>
+                    <select id="faculty" name="faculty" required>
+                        <option value="">Select your faculty</option>
+                        <option value="Arts">Faculty of Arts</option>
+                        <option value="Science">Faculty of Science</option>
+                        <option value="Agriculture">Faculty of Agriculture</option>
+                        <option value="Renewable Natural Resources">Faculty of Renewable Natural Resources</option>
+                        <option value="Social Sciences">Faculty of Social Sciences</option>
+                        <option value="Education">Faculty of Education</option>
+                        <option value="Technology">Faculty of Technology</option>
+                        <option value="Law">Faculty of Law</option>
+                        <option value="Pharmacy">Faculty of Pharmacy</option>
+                        <option value="Veterinary Medicine">Faculty of Veterinary Medicine</option>
+                        <option value="Basic Medical Sciences">Faculty of Basic Medical Sciences</option>
+                        <option value="Clinical Sciences">Faculty of Clinical Sciences</option>
+                        <option value="Dentistry">Faculty of Dentistry</option>
+                        <option value="Public Health">Faculty of Public Health</option>
+                        <option value="Economics & Management Sciences">Faculty of Economics & Management Sciences</option>
+                        <option value="Environmental Design and Management">Faculty of Environmental Design and Management</option>
+                        <option value="Multidisciplinary Studies">Faculty of Multidisciplinary Studies</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department" name="department" required disabled>
+                        <option value="">Select faculty first</option>
+                    </select>
+                </div>
+                 <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number" pattern="[0-9+ -]{8,15}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="residence">Hall of Residence</label>
+                    <select id="residence" name="residence" required>
+                        <option value="">Select your hall of residence</option>
+                        <option value="Abdulsalami Hall">Abdulsalami Hall</option>
+                        <option value="Queen Elizabeth II Hall">Queen Elizabeth II Hall</option>
+                        <option value="Obafemi Awolowo Hall">Obafemi Awolowo Hall</option>
+                        <option value="Tedder Hall">Tedder Hall</option>
+                        <option value="Sultan Bello Hall">Sultan Bello Hall</option>
+                        <option value="Independence Hall">Independence Hall</option>
+                        <option value="Kuti Hall">Kuti Hall</option>
+                        <option value="Queen Idia Hall">Queen Idia Hall</option>
+                        <option value="Mellanby Hall">Mellanby Hall</option>
+                        <option value="Nnamdi Azikiwe Hall">Nnamdi Azikiwe Hall</option>
+                        <option value="Off-Campus">Off-Campus</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <span>Register & Start</span>
+                </button>
+            </form>
+             <p class="login-link">
+        Already have an account? 
+        <a href="/user/login" class="text-link">Log in instead</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Faculty and Department mapping for University of Ibadan
+const departmentsByFaculty = {
+    "Arts": ["Arabic Language and Literature", "Classics", "Communication and Language Arts", "English", "European Studies", "History", "Linguistics", "Philosophy", "Religious Studies", "Theatre Arts"],
+    "Science": ["Archaeology & Anthropology", "Botany", "Chemistry", "Industrial Chemistry", "Computer Science", "Geography", "Geology", "Mathematics", "Microbiology", "Physics", "Statistics", "Zoology"],
+    "Agriculture": ["Agricultural Economics", "Agricultural Extension and Rural Development", "Crop Production and Protection", "Animal Science", "Soil Resources Management"],
+    "Renewable Natural Resources": ["Forestry Resources Management", "Wildlife and Fisheries Management", "Aquaculture and Fisheries Management", "Social and Environmental Forestry"],
+    "Social Sciences": ["Economics", "Geography", "Political Science", "Psychology", "Sociology"],
+    "Education": ["Adult Education", "Educational Management", "Guidance and Counselling", "Library, Archival and Information Studies", "Teacher Education", "Special Education"],
+    "Technology": ["Agricultural and Environmental Engineering", "Civil Engineering", "Electrical and Electronic Engineering", "Food Technology", "Industrial and Production Engineering", "Mechanical Engineering", "Petroleum Engineering", "Wood Products Engineering"],
+    "Law": ["Commercial and Industrial Law", "International Law and Jurisprudence", "Private and Property Law", "Public Law"],
+    "Pharmacy": ["Clinical Pharmacy and Pharmacy Administration", "Pharmaceutical Chemistry", "Pharmaceutical Microbiology", "Pharmaceutics", "Pharmacognosy", "Pharmacology & Toxicology"],
+    "Veterinary Medicine": ["Veterinary Anatomy", "Veterinary Medicine", "Veterinary Microbiology and Parasitology", "Veterinary Pathology", "Veterinary Physiology and Biochemistry", "Veterinary Public Health and Preventive Medicine", "Veterinary Surgery and Reproduction"],
+    "Basic Medical Sciences": ["Anatomy", "Biochemistry", "Chemical Pathology", "Haematology", "Medical Microbiology and Parasitology", "Physiology"],
+    "Clinical Sciences": ["Anaesthesia", "Medicine", "Obstetrics and Gynaecology", "Ophthalmology", "Orthopaedics and Traumatology", "Otorhinolaryngology", "Paediatrics", "Pathology", "Psychiatry", "Radiation Oncology", "Radiology", "Surgery"],
+    "Dentistry": ["Child Dental Health", "Oral and Maxillofacial Surgery", "Oral Pathology", "Periodontology and Community Dentistry", "Preventive Dentistry", "Restorative Dentistry"],
+    "Public Health": ["Epidemiology and Medical Statistics", "Environmental Health Sciences", "Health Policy and Management", "Health Promotion and Education", "Human Nutrition"],
+    "Economics & Management Sciences": ["Economics", "Accounting", "Banking and Finance", "Business Administration", "Marketing and Consumer Studies"],
+    "Environmental Design and Management": ["Architecture", "Estate Management", "Quantity Surveying", "Urban and Regional Planning"],
+    "Multidisciplinary Studies": ["Interdisciplinary Programs"]
+};
+
+// Faculty change handler
+document.getElementById('faculty').addEventListener('change', function() {
+    const faculty = this.value;
+    const departmentSelect = document.getElementById('department');
+    
+    // Clear and disable department dropdown
+    departmentSelect.innerHTML = '<option value="">Select your department</option>';
+    
+    if (faculty && departmentsByFaculty[faculty]) {
+        // Enable and populate department dropdown
+        departmentSelect.disabled = false;
+        departmentsByFaculty[faculty].forEach(dept => {
+            const option = document.createElement('option');
+            option.value = dept;
+            option.textContent = dept;
+            departmentSelect.appendChild(option);
+        });
+    } else {
+        departmentSelect.disabled = true;
+    }
+});
+
+// Registration form submission
+document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            window.location.href = data.redirect;
+        } else {
+            alert(data.message || 'Registration failed');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred during registration');
+    }
+});
+</script>
+{% endblock %}
+
