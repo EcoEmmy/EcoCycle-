@@ -99,7 +99,7 @@
                     <div class="redeemed-content">
                         <h3>{{ log.waste_type }}</h3>
                         <p class="redeemed-points">{{ log.quantity }} items - {{ log.points_earned }} points</p>
-                        <p class="redeemed-date">{{ log.logged_at[:19] }} - 
+                        <p class="redeemed-date">{{ log.logged_at.strftime('%Y-%m-%d %H:%M:%S') }} - 
                             <span style="color: 
                             {% if log.approval_status == 'approved' %}#27ae60
                             {% elif log.approval_status == 'rejected' %}#e74c3c
