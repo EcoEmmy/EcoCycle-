@@ -53,7 +53,8 @@
                     <div class="redeemed-content">
                         <h3>{{ reward.name }}</h3>
                         <p class="redeemed-points">{{ reward.points_required }} points</p>
-                        <p class="redeemed-date">{{ reward.redeemed_at[:19] }}</p>
+                        <p class="redeemed-date">{{ reward.redeemed_at.strftime('%Y-%m-%d %H:%M:%S') }}
+</p>
                     </div>
                 </div>
                 {% endfor %}
