@@ -1145,7 +1145,9 @@ def print_users():
     return render_template('print_users.html', students=students, settings=settings)
 
 # Initialize database on startup
+with app.app_context():
+    init_db()  # ✅ Ensures tables are created even on Render
+
 if __name__ == '__main__':
-    init_db()
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
