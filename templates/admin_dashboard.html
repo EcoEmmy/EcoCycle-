@@ -234,7 +234,7 @@
         <div class="pending-log-item" id="log-{{ log.id }}">
             <div class="log-info">
                 <strong>{{ log.student_name }}</strong> - {{ log.department }}<br>
-                <small>{{ log.waste_type }} × {{ log.quantity }} | {{ log.points_earned }} points | {{ log.logged_at[:19] }}</small>
+                <small>{{ log.waste_type }} × {{ log.quantity }} | {{ log.points_earned }} points | {{ log.logged_at.strftime('%Y-%m-%d %H:%M:%S') }}</small>
                 {% if log.scanned_code %}
                 <br><small>📱 Scanned: {{ log.scanned_code }}</small>
                 {% endif %}
