@@ -104,7 +104,7 @@
                                     {% endif %}
                                 </td>
                                 <td class="points-cell">{{ log.points_earned }} pts</td>
-                                <td>{{ log.logged_at[:19] }}</td>
+                                <td>{{ log.logged_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                             </tr>
                             {% endfor %}
                         {% else %}
